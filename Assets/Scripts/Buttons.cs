@@ -39,4 +39,15 @@ public class Buttons : MonoBehaviour
         Debug.Log(sceneName);
         SceneManager.LoadScene(sceneName);
     }
+
+    public void LoadSavedScene()
+    {
+        string sceneName = PlayerPrefs.GetString("currentScene");
+        if(sceneName == "")
+        {
+            sceneName = "cena1";
+        }
+        Debug.Log(sceneName);
+        SceneManager.LoadScene(sceneName);
+    }
 }
