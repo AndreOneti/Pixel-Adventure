@@ -243,6 +243,11 @@ PrefabInstance:
       propertyPath: m_Text
       value: 'Score:'
       objectReference: {fileID: 0}
+    - target: {fileID: 7780768356605837061, guid: 5a061fd35d53a3842a5280b4635fc195,
+        type: 3}
+      propertyPath: m_FontData.m_BestFit
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a061fd35d53a3842a5280b4635fc195, type: 3}
 --- !u!1001 &51399605
@@ -659,6 +664,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_FontData.m_AlignByGeometry
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7780768356605837061, guid: 5a061fd35d53a3842a5280b4635fc195,
+        type: 3}
+      propertyPath: m_FontData.m_BestFit
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a061fd35d53a3842a5280b4635fc195, type: 3}
@@ -1212,6 +1222,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_FontData.m_Alignment
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7780768356605837061, guid: 5a061fd35d53a3842a5280b4635fc195,
+        type: 3}
+      propertyPath: m_FontData.m_BestFit
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a061fd35d53a3842a5280b4635fc195, type: 3}

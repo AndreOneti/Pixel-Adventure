@@ -1,6 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -10,7 +9,10 @@ public class Player : MonoBehaviour
     public float Speed = 7.0f;
 
     [Tooltip("Force add on playr to jump")]
-    public float JumpForce = 10.0f;
+    public float JumpForce = 17.0f;
+
+    [Tooltip("Force add on playr kill enimies")]
+    public float JumpFeedback = 15.0f;
 
     /// <summary>
     /// Player Rigidbody
@@ -18,10 +20,19 @@ public class Player : MonoBehaviour
     /// </summary>
     private Rigidbody2D rig;
 
+    /// <summary>
+    /// Player animator
+    /// To use on jump, demage,and others animations.
+    /// </summary>
+    private Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
+        // Get player reigebody
         rig = GetComponent<Rigidbody2D>();
+        // Get player animator
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -29,6 +40,7 @@ public class Player : MonoBehaviour
     {
         Move();
         Jump();
+        IsJumping();
     }
 
     void Move()
@@ -37,19 +49,56 @@ public class Player : MonoBehaviour
         transform.position += moviment * Time.deltaTime * Speed;
         if (Input.GetAxis("Horizontal") < 0)
         {
-            transform.rotation = Quaternion.Euler(0.0f, 180f,0);
+            transform.rotation = Quaternion.Euler(0.0f, 180f, 0);
         }
         if (Input.GetAxis("Horizontal") > 0)
         {
             transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
         }
+        if (Input.GetAxis("Horizontal") != 0)
+        {
+            animator.SetBool("isRuning", true);
+        }
+        else
+        {
+            animator.SetBool("isRuning", false);
+        }
     }
 
     void Jump()
     {
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && rig.velocity.y == 0)
         {
             rig.AddForce(new Vector2(0.0f, JumpForce), ForceMode2D.Impulse);
         }
+    }
+
+    void IsJumping()
+    {
+        if (rig.velocity.y > 0)
+        {
+            animator.SetBool("IsJumping", true);
+            animator.SetBool("IsFalling", false);
+        }
+        else if (rig.velocity.y < 0)
+        {
+            animator.SetBool("IsJumping", false);
+            animator.SetBool("IsFalling", true);
+        }
+        else
+        {
+            animator.SetBool("IsJumping", false);
+            animator.SetBool("IsFalling", false);
+        }
+    }
+
+    void KillFeedback()
+    {
+        rig.AddForce(new Vector2(0.0f, JumpFeedback), ForceMode2D.Impulse);
+    }
+
+    void KillPlayer()
+    {
+        SceneManager.LoadScene("GameOver");
     }
 }
