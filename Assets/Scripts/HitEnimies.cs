@@ -3,6 +3,9 @@
 public class HitEnimies : MonoBehaviour
 {
 
+    [Header("Enimy Variables")]
+    [Tooltip("Enimy animator")]
+    [SerializeField]
     private Animator anim;
 
     // Start is called before the first frame update
@@ -21,10 +24,9 @@ public class HitEnimies : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            Debug.Log("Matei o Inimigo");
             Player player = collision.gameObject.GetComponent<Player>();
             player.SendMessage("KillFeedback", SendMessageOptions.DontRequireReceiver);
-            anim.SetBool("hit", true);
+            anim.Play(anim.name + "_hit");
         }
     }
 }

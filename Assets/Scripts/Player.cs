@@ -14,6 +14,9 @@ public class Player : MonoBehaviour
     [Tooltip("Force add on playr kill enimies")]
     public float JumpFeedback = 15.0f;
 
+    [Tooltip("Player HP")]
+    public int health = 2;
+
     /// <summary>
     /// Player Rigidbody
     /// To use on jump, demage,and others.
@@ -99,6 +102,12 @@ public class Player : MonoBehaviour
 
     void KillPlayer()
     {
-        SceneManager.LoadScene("GameOver");
+        health -= 1;
+        animator.Play("Frog_hit");
+        if (health <= 0)
+        {
+            Destroy(this.gameObject);
+            SceneManager.LoadScene("GameOver");
+        }
     }
 }

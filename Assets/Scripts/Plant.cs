@@ -25,4 +25,9 @@ public class Plant : MonoBehaviour
             player.SendMessage("KillPlayer", SendMessageOptions.DontRequireReceiver);
         }
     }
+
+    void Die()
+    {
+        Destroy(this.gameObject);
+    }
 }

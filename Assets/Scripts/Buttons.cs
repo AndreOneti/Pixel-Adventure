@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class Buttons : MonoBehaviour
 {
+    public GameObject pausedScreen;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,37 +19,21 @@ public class Buttons : MonoBehaviour
 
     }
 
-    public void Log()
-    {
-        Debug.Log("Fechar pressionado!");
-    }
-
     public void PauseGame()
     {
         Time.timeScale = 0;
-        Debug.Log("Paused");
+        pausedScreen.SetActive(true);
     }
 
     public void ResumeGame()
     {
         Time.timeScale = 1;
-        Debug.Log("Resumed");
+        pausedScreen.SetActive(!true);
     }
 
     public void LoadScene(string sceneName)
     {
-        Debug.Log(sceneName);
-        SceneManager.LoadScene(sceneName);
-    }
-
-    public void LoadSavedScene()
-    {
-        string sceneName = PlayerPrefs.GetString("currentScene");
-        if(sceneName == "")
-        {
-            sceneName = "cena1";
-        }
-        Debug.Log(sceneName);
+        Time.timeScale = 1;
         SceneManager.LoadScene(sceneName);
     }
 }
