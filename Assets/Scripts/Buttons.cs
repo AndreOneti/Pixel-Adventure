@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+#if UNITY_ADS
+using UnityEngine.Advertisements;
+#endif
+
 public class Buttons : MonoBehaviour
 {
     public GameObject pausedScreen;
@@ -10,7 +14,7 @@ public class Buttons : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        Advertisement.Initialize("3654750", true);
     }
 
     // Update is called once per frame
@@ -29,6 +33,12 @@ public class Buttons : MonoBehaviour
     {
         Time.timeScale = 1;
         pausedScreen.SetActive(!true);
+    #if UNITY_ADS
+        if (UnityAdControle.showAds)
+        {
+            UnityAdControle.ShowAd();
+        }
+    #endif
     }
 
     public void LoadScene(string sceneName)
