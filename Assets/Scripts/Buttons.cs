@@ -17,11 +17,6 @@ public class Buttons : MonoBehaviour
         Advertisement.Initialize("3654750", true);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     public void PauseGame()
     {
@@ -31,7 +26,6 @@ public class Buttons : MonoBehaviour
 
     public void ResumeGame()
     {
-        Time.timeScale = 1;
         pausedScreen.SetActive(!true);
     #if UNITY_ADS
         if (UnityAdControle.showAds)

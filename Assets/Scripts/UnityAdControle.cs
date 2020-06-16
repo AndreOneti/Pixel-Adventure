@@ -18,23 +18,23 @@ public class UnityAdControle : MonoBehaviour
     /// </summary>
     public static void ShowAd()
     {
-    #if UNITY_ADS
+#if UNITY_ADS
+        ShowOptions opcoes = new ShowOptions();
+        opcoes.resultCallback = unPause;
 	    if(Advertisement.IsReady()){
         //Mostra o anuncio - Ads
-	    Advertisement.Show();
+	    Advertisement.Show(opcoes);
 	}
     #endif
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public static void unPause(ShowResult result)
     {
-        
+        Time.timeScale = 1;
     }
 
-    // Update is called once per frame
-    void Update()
+    public static void inicializador()
     {
-        
+        Advertisement.Initialize("3654750", true);
     }
 }
