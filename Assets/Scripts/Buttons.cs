@@ -14,7 +14,9 @@ public class Buttons : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+#if UNITY_ADS
         Advertisement.Initialize("3654750", true);
+#endif
     }
 
 
@@ -26,13 +28,17 @@ public class Buttons : MonoBehaviour
 
     public void ResumeGame()
     {
+
+
         pausedScreen.SetActive(!true);
-    #if UNITY_ADS
+#if UNITY_ADS
         if (UnityAdControle.showAds)
         {
             UnityAdControle.ShowAd();
         }
-    #endif
+#else
+        Time.timeScale = 1;
+#endif
     }
 
     public void LoadScene(string sceneName)

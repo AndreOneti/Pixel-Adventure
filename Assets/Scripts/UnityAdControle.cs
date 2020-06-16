@@ -28,13 +28,16 @@ public class UnityAdControle : MonoBehaviour
     #endif
     }
 
+#if UNITY_ADS
     public static void unPause(ShowResult result)
     {
         Time.timeScale = 1;
     }
-
+#endif
+#if UNITY_ADS
     public static void inicializador()
     {
         Advertisement.Initialize("3654750", true);
     }
+#endif
 }
