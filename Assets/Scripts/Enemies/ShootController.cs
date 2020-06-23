@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 
 public class ShootController : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class ShootController : MonoBehaviour
 
     Vector3 startingPosition;
 
+    public GameObject BuletDestroy;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +25,6 @@ public class ShootController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Move();
         ShootDestroy();
     }
 
@@ -38,12 +40,36 @@ public class ShootController : MonoBehaviour
         }
     }
 
-    void ShootDestroy()
+    public void ShootDestroy()
     {
         float currentDistance = Vector3.Distance(startingPosition, transform.position);
         if (currentDistance > MaxDistance)
         {
-            Destroy(this.gameObject);
+            Explode();
         }
+        else
+        {
+            Move();
+        }
+    }
+
+    public void Explode()
+    {
+        if (BuletDestroy != null)
+        {
+            var partciles = Instantiate(BuletDestroy, transform.position, Quaternion.identity);
+            Destroy(partciles, 1.5f);
+        }
+        Destroy(this.gameObject, 0.08f);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Explode();
+            collision.gameObject.GetComponent<Player>().KillPlayer();
+        }
+
     }
 }

@@ -18,6 +18,9 @@ public class Player : MonoBehaviour
     [Tooltip("Player HP")]
     public int health = 2;
 
+    [Tooltip("Jumping Sound")]
+    public AudioSource audioSource;
+
     /// <summary>
     /// Player Rigidbody
     /// To use on jump, demage,and others.
@@ -31,23 +34,25 @@ public class Player : MonoBehaviour
     private Animator animator;
 
     // Start is called before the first frame update
-    void Start()
+  public void Start()
     {
         // Get player reigebody
         rig = GetComponent<Rigidbody2D>();
         // Get player animator
         animator = GetComponent<Animator>();
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
-    void Update()
+  public  void Update()
     {
         Move();
         Jump();
         IsJumping();
     }
 
-    void Move()
+  public  void Move()
     {
         Vector3 moviment = new Vector3(Input.GetAxis("Horizontal"), 0.0f, 0.0f);
         transform.position += moviment * Time.deltaTime * Speed;
@@ -69,15 +74,16 @@ public class Player : MonoBehaviour
         }
     }
 
-    void Jump()
+  public void Jump()
     {
         if (Input.GetButtonDown("Jump") && rig.velocity.y == 0)
         {
             rig.AddForce(new Vector2(0.0f, JumpForce), ForceMode2D.Impulse);
+            playAudio();
         }
     }
 
-    void IsJumping()
+   public void IsJumping()
     {
         if (rig.velocity.y > 0)
         {
@@ -96,12 +102,18 @@ public class Player : MonoBehaviour
         }
     }
 
-    void KillFeedback()
+    public void KillFeedback()
     {
         rig.AddForce(new Vector2(0.0f, JumpFeedback), ForceMode2D.Impulse);
+        playAudio();
     }
 
-    void KillPlayer()
+    public void playAudio()
+    {
+        audioSource.Play();
+    }
+
+    public void  KillPlayer()
     {
         health -= 1;
         animator.Play("Frog_hit");
