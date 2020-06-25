@@ -1,24 +1,38 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+/// <summary>
+/// Classe responsavel pela camera
+/// </summary>
 public class CamFollow : MonoBehaviour
 {
-    private Transform player;
-    public float offset;
+    /// <summary>
+    /// Referencia do player.
+    /// </summary>
+    private GameObject player;
 
-    // Start is called before the first frame update
+    /// <summary>
+    /// Metodo default do unity, executa antes das demais funções.
+    /// </summary>
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        // Pega areferencia do player no jogo.
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    // Update is called once per frame
+    /// <summary>
+    /// Metodo default do unity, executa a cada x milisegundos com base na maquina que esta rodando.
+    /// </summary>
     void Update()
     {
-        Vector3 temp = transform.position;
-        temp.x = player.position.x;
-        temp.x += offset;
-        transform.position = temp;
+        // Verifica se a referencia do player é não nula.
+        if (player)
+        {
+            // Cria a variavel temporaria coma posição da camera.
+            Vector3 temp = transform.position;
+            // Seta a posição em X da camera igual a do player.
+            temp.x = player.transform.position.x;
+            // Seta a posição na camera.
+            transform.position = temp;
+        }
     }
 }

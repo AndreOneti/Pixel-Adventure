@@ -1,19 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneControler : MonoBehaviour
 {
-    // Start is called before the first frame update
+    /// <summary>
+    /// Metodo default do unity, executa antes das demais funções.
+    /// </summary>
     void Start()
     {
+        // Salva o nome da cena atual.
         PlayerPrefs.SetString("currentScene", SceneManager.GetActiveScene().name);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }
