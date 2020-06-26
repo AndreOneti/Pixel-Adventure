@@ -1,6 +1,12 @@
 # Pixel Adventure
 Unity Game from DM117
 
+## Docs
+
+["PixelAdventure.pdf"](./Docs/PixelAdventure.pdf)
+
+<hr>
+
 ## How to Download and Execute/Modify
 
 Clone repository
