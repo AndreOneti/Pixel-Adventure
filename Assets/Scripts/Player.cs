@@ -148,7 +148,7 @@ public class Player : MonoBehaviour
     /// </summary>
     public void KillFeedback()
     {
-        // Addicia força de feedback no player no modo impulso.
+        // Addiciona força de feedback no player no modo impulso.
         rig.AddForce(new Vector2(0.0f, JumpFeedback), ForceMode2D.Impulse);
         // Executa o audio de pulo do player.
         playAudio();

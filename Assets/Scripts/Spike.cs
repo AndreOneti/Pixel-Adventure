@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Classe responsavel pelo controle do Spike
+/// </summary>
 public class Spike : MonoBehaviour
 {
     /// <summary>
@@ -9,7 +12,7 @@ public class Spike : MonoBehaviour
     public void OnTriggerEnter2D(Collider2D collision)
     {
         // Verifica se a clisão foi com um GameObject com a tag "PLAYER"
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.CompareTag("Player"))
         {
             // Carrega a cena de GameOver
             SceneManager.LoadScene("GameOver");

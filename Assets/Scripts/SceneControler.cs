@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Classe responsavel pelo controle das cenas
+/// </summary>
 public class SceneControler : MonoBehaviour
 {
     /// <summary>

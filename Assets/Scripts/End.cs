@@ -10,6 +10,7 @@ public class End : MonoBehaviour
     /// <summary>
     /// Metodo default do unity, executa quando a uma colisão entre GameObjects
     /// </summary>
+    /// <param name="collision">Referencia ao GameObject que colidiu.</param>
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // Verifica se a clisão foi com um GameObject com a tag "PLAYER"
